@@ -6,30 +6,37 @@ struct stack{
     int top;
     int *arr;
 };
+
 int isempty(struct stack * s){
     if(s->top == -1){
         return 1;
     }
-    else { return 0; }
+    else {
+         return 0;
+        }
 }
+
 int isfull(struct stack * s){
     if(s->top == s->size - 1){
         return 1;
     }
-    else { return 0; }
+    else { 
+        return 0; 
+    }
 }
+
 void push(struct stack * s,int element){
     // int value;
     if(isfull(s)){
         printf("The stack is already full\n");
     }
-    else{
-        
+    else{        
         s->top++;
         s->arr[s->top] = element;
         // return value;
     }
 }
+
 int pop(struct stack * s){
     int value;
       if(isempty(s)){
@@ -41,17 +48,24 @@ int pop(struct stack * s){
         return value;
     }
 }
-int peek(struct stack *s){
+
+int peek(struct stack *s, int position){
+    int value;
+    value = s->arr[position -1];
+    return value;
+}
+
+int stack_top(struct stack *s){
     return s->arr[s->top];    
 }
+
 void show_stack(struct stack *s){
     int a = s->top;
     printf("\n");
     do{
         printf("%d\n",s->arr[a]);
         a--;
-    }while(a>=0);
-    
+    }while(a>=0);    
 }
 
 int main()
@@ -82,9 +96,9 @@ int main()
     printf("%d ",pop(&s));
     printf("%d ",pop(&s));
     
-
     show_stack(&s);
-    printf("%d ",peek(&s));
-
+    
+    printf("%d ",stack_top(&s));
+    printf("\nthe element at 5 position is %d\n",peek(&s,5));
     return 0;
 }
